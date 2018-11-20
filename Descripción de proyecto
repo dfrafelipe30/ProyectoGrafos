@@ -1,0 +1,11 @@
+El objeto grafo es una lista de objetos Page. Por adentro en la clase se crea un diccionario con llave la pagina y valor todas las referencias salientes.
+La clase página tiene un atributos:
+1) Nombre de la página
+2) Secciones
+3) tema principal, una vez hecha la búsqueda de palabras
+4) URL
+5) (opcional) seguridad
+6)Referencias salientes
+7) Referencias entrantes
+
+
