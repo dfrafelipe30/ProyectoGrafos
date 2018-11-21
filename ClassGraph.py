@@ -22,7 +22,6 @@ class Graph:
         for v in self.lados:
             dicc[v[0]] = v[1]
         matriz = []
-        print "Diccionario: ",dicc
         for i in self.nodos:
             aux = []
             for j in self.nodos:
@@ -56,10 +55,27 @@ class Graph:
 
         #ACABAR RANKING
 
-    def PageRank(self,v):
+    def PageRank(self,v,n):
         # Retorna el  nuevo vector despues de multiplicar n veces P x v
-
-
-    
+        # n: numero de veces que se multiplica P*v
+        print "n: ",n
+        if n == 0:
+            print "v: " +str(v)
+            return v
+        else:
+            resul = []
+            matriz = self.MatrizDePesos()
+            for i in  matriz:
+                aux = 0
+                print "i: ",i
+                for j in range(len(v)):
+                    aux = aux + i[j]*v[j]
+                print "aux: ",aux
+                resul.append(aux)
+            print "v: " + str(v)
+            print "resultado: " + str(resul)
+            print "-----------------------------"
+            return self.PageRank(resul,n-1)
+        
         
         
