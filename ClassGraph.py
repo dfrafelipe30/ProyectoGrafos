@@ -14,9 +14,6 @@ class Graph:
 
         self.lados = lados
         
-
-    
-                
     def MatrizDePesos(self):
         dicc = {}
         for v in self.lados:
@@ -59,7 +56,9 @@ class Graph:
         for i in Y:
             indice = X.index(i)
             PaginasResultados.append(self.nodos(i))
-        return PaginasResultados
+        stringResultados = []
+        for i in PaginasResultados:
+            stringResultados.append(i.to_string)
 
     def PageRank(self,v,n):
         # Retorna el  nuevo vector despues de multiplicar n veces P x v
@@ -94,4 +93,9 @@ class Graph:
         for i in range(len(lista)):
             aux[i] = lista[i]
         return aux
-            
+    def InsertarPagina(self,pagina):
+        self.nodos.append(pagina)
+        for j in pagina.PesosANodos:
+            aux = [(pagina.nombre,j),pagina.PesosANodos[j]]
+            self.lados = lados.append(aux)
+        

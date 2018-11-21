@@ -34,4 +34,5 @@ class Page:
         self.URL = URL
     def set_PesosANodos(self,pNodos):
         self.PesosANodos = pNodos
-    
+    def to_string(self):
+        return get_nombre + get_secciones + get_URL
