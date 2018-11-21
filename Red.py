@@ -29,4 +29,5 @@ red = Graph(Paginas)
 #print red.MatrizDePesos()
 
 v = [1/4.,1/4.,1/4.,1/4.]
-print red.PageRank(v,3)
+#print red.Transpuesta()
+print red.PageRank(v,8)

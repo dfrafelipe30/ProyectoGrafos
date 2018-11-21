@@ -52,19 +52,23 @@ class Graph:
 
         s = sum(aux)
         v = [i/s for i in aux]
-
-        #ACABAR RANKING
+        X = self.PageRank(v,8)
+        Y = copy(X)
+        Y.sort(reverse = True)
+        PaginasResultados = []
+        for i in Y:
+            indice = X.index(i)
+            PaginasResultados.append(self.nodos(i))
+        return PaginasResultados
 
     def PageRank(self,v,n):
         # Retorna el  nuevo vector despues de multiplicar n veces P x v
         # n: numero de veces que se multiplica P*v
-        print "n: ",n
         if n == 0:
-            print "v: " +str(v)
             return v
         else:
             resul = []
-            matriz = self.MatrizDePesos()
+            matriz = self.Transpuesta()
             for i in  matriz:
                 aux = 0
                 print "i: ",i
@@ -72,10 +76,22 @@ class Graph:
                     aux = aux + i[j]*v[j]
                 print "aux: ",aux
                 resul.append(aux)
-            print "v: " + str(v)
-            print "resultado: " + str(resul)
-            print "-----------------------------"
             return self.PageRank(resul,n-1)
         
-        
-        
+    def Transpuesta(self):
+        contador = 0
+        trans = []
+        matriz = self.MatrizDePesos()
+        while(contador <= len(matriz) - 1):
+            aux = []
+            for i in matriz:
+                aux.append(i[contador])
+            trans.append(aux)
+            contador = contador + 1
+        return trans
+    def copy(self,lista):
+        aux = []
+        for i in range(len(lista)):
+            aux[i] = lista[i]
+        return aux
+            
