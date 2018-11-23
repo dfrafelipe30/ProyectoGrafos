@@ -35,4 +35,4 @@ class Page:
     def set_PesosANodos(self,pNodos):
         self.PesosANodos = pNodos
     def to_string(self):
-        return [self.nombre,self.secciones,self.URL]
+        return str(self.nombre) + str(self.secciones) + str(self.URL)

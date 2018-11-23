@@ -15,7 +15,7 @@ def secciones(secciones,nombres):
     return d
 
 def crearPesosA(dic,n,nombres,Npag):
-    idx = range(1,12)
+    idx = [1,5,7,10]
     for i in range(len(nom)):
         if(nom[i] == 'Facebook' or i in idx):
             dic[nom[i]] = 1./n
@@ -26,7 +26,7 @@ def crearPesosA(dic,n,nombres,Npag):
 
 
 def crearPesosB(dic,n,nombres,Npag):
-    idx = [0,2,3,4,5,6,7,8,9,10,11]
+    idx = [0,2,4,6]
     for i in range(len(nom)):
         if(nom[i] == 'Twitter' or i in idx):
             dic[nom[i]] = 1./n
@@ -36,28 +36,30 @@ def crearPesosB(dic,n,nombres,Npag):
 
 
 def crearPesosC(dic,n,nombres,Npag):
-    idx = [0,1,3,4,5,6,7,8,9,10,11]
-    for i in range(len(nom)):
-        if(i in idx and nom[i] != 'Instagram'):
-            dic[nom[i]] = 1./n
+    #print dic
+    idx = [7,8,9,11]
+    for i in idx:
+        #print "nom[i]: ",nom[i]
+        #print"i: ",i
+        dic[nom[i]] = 1./n
 
     #dic.pop('Instagram')
     return dic
 
 
 def crearPesosD(dic,n,nombres,Npag):
-    idx = [0,1,2,4,5,6,7,8,9,10,11]
+    idx = [0,5,9,1]
     for i in range(len(nom)):
         if(nom[i] != 'SnapChat' and i in idx):
             dic[nom[i]] = 1./n
 
-    dic.pop(Npag)
+    #dic.pop(Npag)
     return dic
     
     
 
 def crearPesos2(dic,n,nombres,Npag):
-    idx = [0,1,2,9,10,11]
+    idx = [6,5,2,9,10,11]
     for i in range(len(nom)):
         if i in idx:
             dic[nom[i]] = 1./n
@@ -142,27 +144,46 @@ for i in range(len(nom)):
 
 
 #A = Facebook
+d1 = {'SnapChat':1/2.,
+      'Instagram': 1./2.}
+p1 = Page('Facebook',dSec['Facebook'],temasppl['Facebook'],dpag['Facebook'],d1)
+
+#B = 'SnapChat'
+d2 = {'Instagram':1./2.,
+      'Facebook':1./2.}
+p2 = Page('Instagram',dSec['Instagram'],temasppl['Instagram'],dpag['Instagram'],d2)
+
+#C = Instagram
+d3 = {'Caracol':1./2.,
+      'SnapChat': 1./2.}
+p3 = Page('Instagram',dSec['Instagram'],temasppl['Instagram'],dpag['Instagram'],d3)
+
+#D = Caracol
+d4 = {'Facebook':1}
+p4 = Page('Caracol',dSec['Caracol'],temasppl['Caracol'],dpag['Caracol'],d4)
 
 
+
+
+"""
 d1 = {}
-d1 = crearPesosA(d1,11,nom,'Facebook')
+d1 = crearPesosA(d1,4,nom,'Facebook')
 p1 = Page('Facebook',dSec['Facebook'],temasppl['Facebook'],dpag['Facebook'],d1)
 
 
 # B = Twitter
 d2 = {}
-d2 = crearPesosB(d2,11,nom,'Twitter')
+d2 = crearPesosB(d2,4,nom,'Twitter')
 p2 = Page('Twitter',dSec['Twitter'],temasppl['Twitter'],dpag['Twitter'],d2)
 
 #C = Instagram
 d3 = {}
-d3 = crearPesosC(d3,11,nom,'Instagram')
-#d3.pop('Instagram')
+d3 = crearPesosC(d3,4,nom,'Instagram')
 p3 = Page('Instagram',dSec['Instagram'],temasppl['Instagram'],dpag['Instagram'],d3)
 
 #D = SnapChat
 d4 = {}
-d4 = crearPesosD(d3,11,nom,'SnapChat')
+d4 = crearPesosD(d4,4,nom,'SnapChat')
 p4 = Page('SnapChat',dSec['SnapChat'],temasppl['SnapChat'],dpag['SnapChat'],d4)
 
 #E = Caracol
@@ -204,7 +225,7 @@ p11 = Page('Fox Sports',dSec['Fox Sports'],temasppl['Fox Sports'],dpag['Fox Spor
 d12 = {}
 d12 = crearPesos3(d12,2,nom,'Claro sports')
 p12 = Page('Claro sports',dSec['Claro sports'],temasppl['Claro sports'],dpag['Claro sports'],d12)
-
+"""
 """
 #M 'cuevana2'
 d13 = {}
@@ -226,15 +247,10 @@ d16 = crearPesos4(d16,4,nom,'Warner Bros')
 p16 = Page('Warner Bros',dSec['Warner Bros'],temasppl['Warner Bros'],dpag['Warner Bros'],d16)
 """
 
-Paginas = [p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12]
-for p in Paginas:
-    print p.nombre
-    print p.PesosANodos
-    print '----------------------------------'
-
+Paginas = [p1,p2,p3,p4]
 red = Graph(Paginas)
 #print red.MatrizDePesos()
+#print red.buscador('noticias ')
 
-v = [1/4.,1/4.,1/4.,1/4.]
 #print red.Transpuesta()
 #print red.PageRank(v,8)
